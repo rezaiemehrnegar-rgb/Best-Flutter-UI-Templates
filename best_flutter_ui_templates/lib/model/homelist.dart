@@ -5,10 +5,7 @@ import 'package:best_flutter_ui_templates/introduction_animation/introduction_an
 import 'package:flutter/widgets.dart';
 
 class HomeList {
-  HomeList({
-    this.navigateScreen,
-    this.imagePath = '',
-  });
+  HomeList({this.navigateScreen, this.imagePath = ''});
 
   Widget? navigateScreen;
   String imagePath;

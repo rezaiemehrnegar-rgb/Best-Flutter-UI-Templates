@@ -1,10 +1,12 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:best_flutter_ui_templates/design_course/design_course_app_theme.dart';
 import 'package:best_flutter_ui_templates/design_course/models/category.dart';
 import 'package:best_flutter_ui_templates/main.dart';
 import 'package:flutter/material.dart';
 
 class CategoryListView extends StatefulWidget {
-  const CategoryListView({Key? key, this.callBack}) : super(key: key);
+  const CategoryListView({super.key, this.callBack});
 
   final Function()? callBack;
   @override
@@ -92,12 +94,12 @@ class _CategoryListViewState extends State<CategoryListView>
 
 class CategoryView extends StatelessWidget {
   const CategoryView({
-    Key? key,
+    super.key,
     this.category,
     this.animationController,
     this.animation,
     this.callback,
-  }) : super(key: key);
+  });
 
   final VoidCallback? callback;
   final Category? category;
@@ -124,174 +126,156 @@ class CategoryView extends StatelessWidget {
                 width: 280,
                 child: Stack(
                   children: <Widget>[
-                    Container(
-                      child: Row(
-                        children: <Widget>[
-                          const SizedBox(width: 48),
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: HexColor('#F8FAFB'),
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(16.0),
-                                ),
+                    Row(
+                      children: <Widget>[
+                        const SizedBox(width: 48),
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: HexColor('#F8FAFB'),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(16.0),
                               ),
-                              child: Row(
-                                children: <Widget>[
-                                  const SizedBox(width: 48 + 24.0),
-                                  Expanded(
-                                    child: Container(
-                                      child: Column(
-                                        children: <Widget>[
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              top: 16,
-                                            ),
-                                            child: Text(
-                                              category!.title,
+                            ),
+                            child: Row(
+                              children: <Widget>[
+                                const SizedBox(width: 48 + 24.0),
+                                Expanded(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 16),
+                                        child: Text(
+                                          category!.title,
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 16,
+                                            letterSpacing: 0.27,
+                                            color:
+                                                DesignCourseAppTheme.darkerText,
+                                          ),
+                                        ),
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          right: 16,
+                                          bottom: 8,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            Text(
+                                              '${category!.lessonCount} lesson',
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
+                                                fontWeight: FontWeight.w200,
+                                                fontSize: 12,
                                                 letterSpacing: 0.27,
-                                                color: DesignCourseAppTheme
-                                                    .darkerText,
+                                                color:
+                                                    DesignCourseAppTheme.grey,
                                               ),
                                             ),
-                                          ),
-                                          const Expanded(child: SizedBox()),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              right: 16,
-                                              bottom: 8,
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                            Row(
                                               children: <Widget>[
                                                 Text(
-                                                  '${category!.lessonCount} lesson',
+                                                  '${category!.rating}',
                                                   textAlign: TextAlign.left,
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w200,
-                                                    fontSize: 12,
+                                                    fontSize: 18,
                                                     letterSpacing: 0.27,
                                                     color: DesignCourseAppTheme
                                                         .grey,
                                                   ),
                                                 ),
-                                                Container(
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      Text(
-                                                        '${category!.rating}',
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w200,
-                                                          fontSize: 18,
-                                                          letterSpacing: 0.27,
-                                                          color:
-                                                              DesignCourseAppTheme
-                                                                  .grey,
-                                                        ),
-                                                      ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color:
-                                                            DesignCourseAppTheme
-                                                                .nearlyBlue,
-                                                        size: 20,
-                                                      ),
-                                                    ],
-                                                  ),
+                                                Icon(
+                                                  Icons.star,
+                                                  color: DesignCourseAppTheme
+                                                      .nearlyBlue,
+                                                  size: 20,
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              bottom: 16,
-                                              right: 16,
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Text(
-                                                  '\$${category!.money}',
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 18,
-                                                    letterSpacing: 0.27,
-                                                    color: DesignCourseAppTheme
-                                                        .nearlyBlue,
-                                                  ),
-                                                ),
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    color: DesignCourseAppTheme
-                                                        .nearlyBlue,
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                          Radius.circular(8.0),
-                                                        ),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                          4.0,
-                                                        ),
-                                                    child: Icon(
-                                                      Icons.add,
-                                                      color:
-                                                          DesignCourseAppTheme
-                                                              .nearlyWhite,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          bottom: 16,
+                                          right: 16,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              '\$${category!.money}',
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 18,
+                                                letterSpacing: 0.27,
+                                                color: DesignCourseAppTheme
+                                                    .nearlyBlue,
+                                              ),
+                                            ),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                color: DesignCourseAppTheme
+                                                    .nearlyBlue,
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                      Radius.circular(8.0),
+                                                    ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(
+                                                  4.0,
+                                                ),
+                                                child: Icon(
+                                                  Icons.add,
+                                                  color: DesignCourseAppTheme
+                                                      .nearlyWhite,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 24,
+                        bottom: 24,
+                        left: 16,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(16.0),
+                            ),
+                            child: AspectRatio(
+                              aspectRatio: 1.0,
+                              child: Image.asset(category!.imagePath),
                             ),
                           ),
                         ],
-                      ),
-                    ),
-                    Container(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 24,
-                          bottom: 24,
-                          left: 16,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            ClipRRect(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(16.0),
-                              ),
-                              child: AspectRatio(
-                                aspectRatio: 1.0,
-                                child: Image.asset(category!.imagePath),
-                              ),
-                            ),
-                          ],
-                        ),
                       ),
                     ),
                   ],

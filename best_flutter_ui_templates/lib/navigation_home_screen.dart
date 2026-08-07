@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:best_flutter_ui_templates/app_theme.dart';
 import 'package:best_flutter_ui_templates/custom_drawer/drawer_user_controller.dart';
 import 'package:best_flutter_ui_templates/custom_drawer/home_drawer.dart';
@@ -8,6 +10,8 @@ import 'package:best_flutter_ui_templates/invite_friend_screen.dart';
 import 'package:flutter/material.dart';
 
 class NavigationHomeScreen extends StatefulWidget {
+  const NavigationHomeScreen({super.key});
+
   @override
   _NavigationHomeScreenState createState() => _NavigationHomeScreenState();
 }

@@ -1,9 +1,10 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:best_flutter_ui_templates/hotel_booking/hotel_app_theme.dart';
 import 'package:flutter/material.dart';
 
 class RangeSliderView extends StatefulWidget {
-  const RangeSliderView({Key? key, this.values, this.onChangeRangeValues})
-      : super(key: key);
+  const RangeSliderView({super.key, this.values, this.onChangeRangeValues});
 
   final Function(RangeValues)? onChangeRangeValues;
   final RangeValues? values;
@@ -23,74 +24,64 @@ class _RangeSliderViewState extends State<RangeSliderView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: _values!.start.round(),
-                    child: const SizedBox(),
+    return Column(
+      children: <Widget>[
+        Stack(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(flex: _values!.start.round(), child: const SizedBox()),
+                SizedBox(
+                  width: 54,
+                  child: Text(
+                    '\$${_values!.start.round()}',
+                    textAlign: TextAlign.center,
                   ),
-                  Container(
-                    width: 54,
-                    child: Text(
-                      '\$${_values!.start.round()}',
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1000 - _values!.start.round(),
-                    child: const SizedBox(),
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: _values!.end.round(),
-                    child: const SizedBox(),
-                  ),
-                  Container(
-                    width: 54,
-                    child: Text(
-                      '\$${_values!.end.round()}',
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1000 - _values!.end.round(),
-                    child: const SizedBox(),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SliderTheme(
-            data: SliderThemeData(
-              rangeThumbShape: CustomRangeThumbShape(),
+                ),
+                Expanded(
+                  flex: 1000 - _values!.start.round(),
+                  child: const SizedBox(),
+                ),
+              ],
             ),
-            child: RangeSlider(
-              values: _values!,
-              min: 0.0,
-              max: 1000.0,
-              activeColor: HotelAppTheme.buildLightTheme().primaryColor,
-              inactiveColor: Colors.grey.withOpacity(0.4),
-              divisions: 1000,
-              onChanged: (RangeValues values) {
-                try {
-                  setState(() {
-                    _values = values;
-                  });
-                  widget.onChangeRangeValues!(_values!);
-                } catch (_) {}
-              },
+            Row(
+              children: <Widget>[
+                Expanded(flex: _values!.end.round(), child: const SizedBox()),
+                SizedBox(
+                  width: 54,
+                  child: Text(
+                    '\$${_values!.end.round()}',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Expanded(
+                  flex: 1000 - _values!.end.round(),
+                  child: const SizedBox(),
+                ),
+              ],
             ),
+          ],
+        ),
+        SliderTheme(
+          data: SliderThemeData(rangeThumbShape: CustomRangeThumbShape()),
+          child: RangeSlider(
+            values: _values!,
+            min: 0.0,
+            max: 1000.0,
+            activeColor: HotelAppTheme.buildLightTheme().primaryColor,
+            inactiveColor: Colors.grey.withValues(alpha: 0.4),
+            divisions: 1000,
+            onChanged: (RangeValues values) {
+              try {
+                setState(() {
+                  _values = values;
+                });
+                widget.onChangeRangeValues!(_values!);
+              } catch (_) {}
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -157,20 +148,27 @@ class CustomRangeThumbShape extends RangeSliderThumbShape {
     }
 
     canvas.drawPath(
-        Path()
-          ..addOval(Rect.fromPoints(Offset(center.dx + 12, center.dy + 12),
-              Offset(center.dx - 12, center.dy - 12)))
-          ..fillType = PathFillType.evenOdd,
-        Paint()
-          ..color = Colors.black.withOpacity(0.5)
-          ..maskFilter =
-              MaskFilter.blur(BlurStyle.normal, convertRadiusToSigma(8)));
+      Path()
+        ..addOval(
+          Rect.fromPoints(
+            Offset(center.dx + 12, center.dy + 12),
+            Offset(center.dx - 12, center.dy - 12),
+          ),
+        )
+        ..fillType = PathFillType.evenOdd,
+      Paint()
+        ..color = Colors.black.withValues(alpha: 0.5)
+        ..maskFilter = MaskFilter.blur(
+          BlurStyle.normal,
+          convertRadiusToSigma(8),
+        ),
+    );
 
     final Paint cPaint = Paint();
-    cPaint..color = Colors.white;
-    cPaint..strokeWidth = 14 / 2;
+    cPaint.color = Colors.white;
+    cPaint.strokeWidth = 14 / 2;
     canvas.drawCircle(Offset(center.dx, center.dy), 12, cPaint);
-    cPaint..color = colorTween.evaluate(enableAnimation)!;
+    cPaint.color = colorTween.evaluate(enableAnimation)!;
     canvas.drawCircle(Offset(center.dx, center.dy), 10, cPaint);
     canvas.drawPath(thumbPath, Paint()..color = Colors.white);
   }
